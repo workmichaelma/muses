@@ -3,6 +3,7 @@ import { makeStyles, withStyles } from '@material-ui/core/styles';
 import ReactPageScroller from 'react-page-scroller'
 import ForHer from './ForHer'
 import ForHim from './ForHim'
+import ForYou from './ForYou'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -49,6 +50,7 @@ const IndexMainSlider = () => {
       >
         <ForHer className={classes.page} />
         <ForHim className={classes.page} />
+        <ForYou className={classes.page} />
       </ReactPageScroller>
     </div>
   )

@@ -4,8 +4,8 @@ import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    textAlign: 'center',
     margin: '1px 0',
+    paddingLeft: 9,
     '& a': {
       color: '#3d3d3d',
       textDecoration: 'none',

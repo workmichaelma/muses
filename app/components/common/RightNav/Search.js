@@ -1,9 +1,10 @@
-import SearchIcon from '@material-ui/icons/Search';
 import { fade, makeStyles } from '@material-ui/core/styles';
+import SearchIcon from '@material-ui/icons/Search';
 import IconButton from '@material-ui/core/IconButton';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import InputAdornment from '@material-ui/core/InputAdornment';
+import Grid from '@material-ui/core/Grid';
 
 const useAutoCompleteStyles = makeStyles((theme) => ({
   root: {
@@ -17,7 +18,8 @@ const useAutoCompleteStyles = makeStyles((theme) => ({
     paddingBottom: [[5], '!important'],
   },
   input: {
-    padding: '0 !important'
+    padding: '0 !important',
+    fontSize: 12,
   },
   endAdornment: {
     top: 'calc(50% - 12px)',
@@ -35,6 +37,20 @@ const useTextFieldStyles = makeStyles((theme) => ({
 const useStyles = makeStyles((theme) => ({
   option: {
     fontSize: 12
+  },
+  left: {
+    flex: 1
+  },
+  right: {
+    textAlign: 'right',
+    flexBasis: 25,
+    width: 20,
+    height: 20,
+    '&>svg': {
+      width: 20,
+      height: 20,
+      cursor: 'pointer',
+    }
   }
 }))
 
@@ -44,31 +60,36 @@ const Search = () => {
   const classes = useStyles();
 
   return (
-    <div>
-      <Autocomplete
-        freeSolo
-        fullWidth
-        autoSelect
-        classes={{ ...autoCompleteClasses }}
-        options={top100Films.map((option) => option.title)}
-        renderInput={(params) => (
-          <TextField
-            {...params}
-            notched
-            classes={{ ...textFieldClasses }}
-            margin="normal"
-            variant="outlined"
-          />
-        )}
-        renderOption={(option, { selected }) => {
-          return (
-            <div className={classes.option}>
-              {option}
-            </div>
-          )
-        }}
-      />
-    </div>
+    <Grid container alignItems="center">
+      <Grid item className={classes.left}>
+        <Autocomplete
+          freeSolo
+          fullWidth
+          autoSelect
+          classes={{ ...autoCompleteClasses }}
+          options={top100Films.map((option) => option.title)}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              notched
+              classes={{ ...textFieldClasses }}
+              margin="normal"
+              variant="outlined"
+            />
+          )}
+          renderOption={(option, { selected }) => {
+            return (
+              <div className={classes.option}>
+                {option}
+              </div>
+            )
+          }}
+        />
+      </Grid>
+      <Grid item className={classes.right}>
+        <SearchIcon />
+      </Grid>
+    </Grid>
   )
 }
 
