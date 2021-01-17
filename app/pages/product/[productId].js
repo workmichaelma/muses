@@ -6,6 +6,7 @@ import IndexMainSlider from 'components/index/IndexMainSlider'
 import ProductMainSlider from 'components/product/ProductMainSlider'
 import ProductDetail from 'components/product/ProductDetail'
 import { map } from 'lodash'
+import useProduct from 'hook/useProduct'
 
 const useStyles = makeStyles((theme) => ({
   main: {
@@ -24,10 +25,11 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function ProductPage({ product }) {
-  // const router = useRouter()
-  // const { productId } = router.query
+export default function ProductPage({ productId }) {
   const classes = useStyles()
+  const { getProductById } = useProduct()
+
+  const product = getProductById(productId)
 
   return (
     <div>
@@ -56,6 +58,7 @@ ProductPage.getInitialProps = async (props) => {
   const { productId } = props.router.query
 
   return {
+    productId,
     product: {
       productId,
       title: {
