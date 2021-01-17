@@ -13,6 +13,9 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: 140,
     marginTop: 20,
     marginRight: 410,
+    [theme.breakpoints.up('lg')]: {
+      marginRight: 640
+    }
   },
   detail: {
     position: 'fixed',
@@ -22,10 +25,16 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: 69.5,
     width: 270,
     height: '100vh',
+    [theme.breakpoints.up('lg')]: {
+      width: 420,
+      right: 220,
+    }
   }
 }));
 
-export default function ProductPage({ productId }) {
+export default function ProductPage({}) {
+  const router = useRouter()
+  const { productId } = router.query
   const classes = useStyles()
   const { getProductById } = useProduct()
 
@@ -59,55 +68,5 @@ ProductPage.getInitialProps = async (props) => {
 
   return {
     productId,
-    product: {
-      productId,
-      title: {
-        zh: '黑髮晶手鏈',
-        en: 'Black hair bracelet',
-      },
-      images: map([1, 2, 3, 4], k => `/static/product/blackhair/${productId}_${k}.jpeg`),
-      price: {
-        hkd: 450,
-        usd: 49.9,
-      },
-      size: '10mm',
-      origin: 'Uruguay',
-      description: {
-        zh: `黃水晶主偏財，可以聚財，能增強氣場中的黃光，從而創造出意外之財，所以從事商業的公司和商家一定要入手一款黃水晶，且有着催財的功效。人稱「商人之石」。`,
-        en: `Called The Merchant's Stone for its properties of increase in the cashbox, sparkling yellow Citrine not only assists in acquiring wealth, but helps in maintaining it. Citrine assists in all fast money ventures, and is especially helpful in financial speculation and for commercial success.`
-      },
-      tags: [
-        {
-          tagId: '1',
-          url: '/category/blackhair',
-          title: {
-            en: 'Black Hair',
-            zh: '黑髮晶',
-          },
-          backgroundColor: '#eee',
-          color: '#aaa',
-        },
-        {
-          tagId: 't1',
-          url: '/category/bracelet',
-          title: {
-            en: 'Bracelet',
-            zh: '手鏈',
-          },
-          backgroundColor: 'yellow',
-          color: '#eee',
-        },
-        {
-          tagId: 'c1',
-          url: '/category/black',
-          title: {
-            en: 'Black',
-            zh: '黑色',
-          },
-          backgroundColor: 'black',
-          color: 'white',
-        }
-      ]
-    }
   }
 }

@@ -31,6 +31,7 @@ const Detail = ({ product }) => {
   const classes = useStyles();
   const [copyText, setCopyText] = useState('Copy');
   const { size, productId, origin, description, tags } = product
+  console.log({product})
 
   const handleCopy = (v) => {
     if (!!v) {

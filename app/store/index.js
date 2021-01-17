@@ -1,11 +1,79 @@
-import { get, map, range, take, reject } from 'lodash'
+import { get, map, range, take, reject, find } from 'lodash'
 import { useMemo } from 'react'
 import { createStore, applyMiddleware } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 
 let store
 
+const categoryList = [
+  {
+    tagId: 'black-rutilated-quartz',
+    url: '/category/black-rutilated-quartz',
+    title: {
+      en: 'Black Rutilated Quartz',
+      zh: '黑髮晶',
+    },
+  },
+  {
+    tagId: 'bracelet',
+    url: '/category/bracelet',
+    title: {
+      en: 'Bracelet',
+      zh: '手鏈',
+    },
+  },
+  {
+    tagId: 'earring',
+    url: '/category/earring',
+    title: {
+      en: 'Earring',
+      zh: '耳環',
+    },
+  },
+  {
+    tagId: 'black',
+    url: '/category/black',
+    title: {
+      en: 'Black',
+      zh: '黑色',
+    },
+  },
+  {
+    tagId: 'citrine',
+    url: '/category/citrine',
+    title: {
+      en: 'Citrine',
+      zh: '黃水晶',
+    },
+  },
+  {
+    tagId: 'yellow',
+    url: '/category/yellow',
+    title: {
+      en: 'Yellow',
+      zh: '黃色',
+    },
+  },
+  {
+    tagId: 'crystal-ball',
+    url: '/category/crystal-ball',
+    title: {
+      en: 'Crystal Ball',
+      zh: '水晶球',
+    },
+  },
+]
 
+const initProductList = () => {
+  return map(productList, p => {
+    return {
+      ...p,
+      tags: map(p.tags, tagId => {
+        return find(categoryList, { tagId })
+      })
+    }
+  })
+}
 
 const productList = [
   {
@@ -26,30 +94,9 @@ const productList = [
       en: `The black rutilated quartz can grab and at the same time find out luck and a good chance. The stone can offer you the needed skills in order to analyze things properly and carefully. It’s very effective when you are having a hard time choosing between the two things you like. In addition to that, a lot of people are using it as a talisman and it’s even supported by a lot of business executives and owners who need to make vital decisions.`
     },
     tags: [
-      {
-        tagId: 'black-rutilated-quartz',
-        url: '/category/black-rutilated-quartz',
-        title: {
-          en: 'Black Rutilated Quartz',
-          zh: '黑髮晶',
-        },
-      },
-      {
-        tagId: 'bracelet',
-        url: '/category/bracelet',
-        title: {
-          en: 'Bracelet',
-          zh: '手鏈',
-        },
-      },
-      {
-        tagId: 'black',
-        url: '/category/black',
-        title: {
-          en: 'Black',
-          zh: '黑色',
-        },
-      }
+      'black-rutilated-quartz',
+      'bracelet',
+      'black'
     ]
   },
   {
@@ -70,30 +117,9 @@ const productList = [
       en: `Called The Merchant's Stone for its properties of increase in the cashbox, sparkling yellow Citrine not only assists in acquiring wealth, but helps in maintaining it. Citrine assists in all fast money ventures, and is especially helpful in financial speculation and for commercial success.`
     },
     tags: [
-      {
-        tagId: '1',
-        url: '/category/citrine',
-        title: {
-          en: 'Citrine',
-          zh: '黃水晶',
-        },
-      },
-      {
-        tagId: 'bracelet',
-        url: '/category/bracelet',
-        title: {
-          en: 'Bracelet',
-          zh: '手鏈',
-        },
-      },
-      {
-        tagId: 'yellow',
-        url: '/category/yellow',
-        title: {
-          en: 'Yellow',
-          zh: '黃色',
-        },
-      }
+      'citrine',
+      'bracelet',
+      'yellow',
     ]
   },
   {
@@ -114,30 +140,9 @@ const productList = [
       en: `Called The Merchant's Stone for its properties of increase in the cashbox, sparkling yellow Citrine not only assists in acquiring wealth, but helps in maintaining it. Citrine assists in all fast money ventures, and is especially helpful in financial speculation and for commercial success.`
     },
     tags: [
-      {
-        tagId: '1',
-        url: '/category/citrine',
-        title: {
-          en: 'Citrine',
-          zh: '黃水晶',
-        },
-      },
-      {
-        tagId: 'bracelet',
-        url: '/category/bracelet',
-        title: {
-          en: 'Bracelet',
-          zh: '手鏈',
-        },
-      },
-      {
-        tagId: 'yellow',
-        url: '/category/yellow',
-        title: {
-          en: 'Yellow',
-          zh: '黃色',
-        },
-      }
+      'citrine',
+      'bracelet',
+      'yellow',
     ]
   },
   {
@@ -158,36 +163,62 @@ const productList = [
       en: `Called The Merchant's Stone for its properties of increase in the cashbox, sparkling yellow Citrine not only assists in acquiring wealth, but helps in maintaining it. Citrine assists in all fast money ventures, and is especially helpful in financial speculation and for commercial success.`
     },
     tags: [
-      {
-        tagId: '1',
-        url: '/category/citrine',
-        title: {
-          en: 'Citrine',
-          zh: '黃水晶',
-        },
-      },
-      {
-        tagId: 'bracelet',
-        url: '/category/bracelet',
-        title: {
-          en: 'Bracelet',
-          zh: '手鏈',
-        },
-      },
-      {
-        tagId: 'yellow',
-        url: '/category/yellow',
-        title: {
-          en: 'Yellow',
-          zh: '黃色',
-        },
-      }
+      'citrine',
+      'bracelet',
+      'yellow',
+    ]
+  },
+  {
+    productId: '5',
+    title: {
+      zh: '黃水晶耳環',
+      en: 'Citrine earring',
+    },
+    images: map([1, 2, 3], k => `/static/product/citrine/5_${k}.jpeg`),
+    price: {
+      hkd: 500,
+      usd: 59.9,
+    },
+    size: '6x6mm',
+    origin: 'Brazil',
+    description: {
+      zh: `黃水晶主偏財，可以聚財，能增強氣場中的黃光，從而創造出意外之財，所以從事商業的公司和商家一定要入手一款黃水晶，且有着催財的功效。人稱「商人之石」。`,
+      en: `Called The Merchant's Stone for its properties of increase in the cashbox, sparkling yellow Citrine not only assists in acquiring wealth, but helps in maintaining it. Citrine assists in all fast money ventures, and is especially helpful in financial speculation and for commercial success.`
+    },
+    tags: [
+      'citrine',
+      'earring',
+      'yellow',
+    ]
+  },
+  {
+    productId: '6',
+    title: {
+      zh: '黃水晶球',
+      en: 'Citrine ball',
+    },
+    images: map([1, 2, 3], k => `/static/product/citrine/6_${k}.jpeg`),
+    price: {
+      hkd: 6500,
+      usd: 799.9,
+    },
+    size: '6x6mm',
+    origin: 'Brazil',
+    description: {
+      zh: `黃水晶主偏財，可以聚財，能增強氣場中的黃光，從而創造出意外之財，所以從事商業的公司和商家一定要入手一款黃水晶，且有着催財的功效。人稱「商人之石」。`,
+      en: `Called The Merchant's Stone for its properties of increase in the cashbox, sparkling yellow Citrine not only assists in acquiring wealth, but helps in maintaining it. Citrine assists in all fast money ventures, and is especially helpful in financial speculation and for commercial success.`
+    },
+    tags: [
+      'citrine',
+      'crystal-ball',
+      'yellow',
     ]
   }
 ]
 
 const initialState = {
-  productList,
+  productList: initProductList(),
+  categoryList,
 }
 
 const reducer = (state = initialState, action) => {

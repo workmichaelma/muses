@@ -6,8 +6,9 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: 'Helvetica Neue',
     textTransform: 'uppercase',
     letterSpacing: -1,
+    lineHeight: '14px',
     marginTop: 0,
-    marginBottom: 0,
+    marginBottom: 3,
   },
   h1: {
     marginTop: 0,

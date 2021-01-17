@@ -1,11 +1,13 @@
 import React from 'react';
+import Router from 'next/router'
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import TreeView from '@material-ui/lab/TreeView';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import TreeItem from '@material-ui/lab/TreeItem';
-
 import map from 'lodash/map'
+
+import useCategory from 'hook/useCategory'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -13,16 +15,16 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     maxWidth: 400,
   },
-  treeItem: {
-    '&:focus > $content $label, &:hover > $content $label, &$selected > $content $label': {
-      backgroundColor: 'transparent',
-    },
-  },
+  // treeItem: {
+  //   '&:focus > $content $label, &:hover > $content $label, &$selected > $content $label': {
+  //     backgroundColor: 'transparent',
+  //   },
+  // },
   selected: {
     // backgroundColor: 'transparent'
-    '& $content': {
-      fontSize: '3rem'
-    },
+    // '& $content': {
+    //   fontSize: '3rem'
+    // },
   }
 }));
 
@@ -72,6 +74,36 @@ const data = [
     ],
   },
   {
+    id: 'species',
+    name: '款式',
+    children: [
+      {
+        id: 'new',
+        name: '新品系列',
+      },
+      {
+        id: 'bracelet',
+        name: '手鏈',
+      },
+      {
+        id: 'necklace',
+        name: '項鏈',
+      },
+      {
+        id: 'ring',
+        name: '戒指',
+      },
+      {
+        id: 'earring',
+        name: '耳環',
+      },
+      {
+        id: 'crystal-ball',
+        name: '水晶球',
+      },
+    ],
+  },
+  {
     id: 'forYou',
     name: '度身訂造',
   },
@@ -83,6 +115,7 @@ const data = [
 
 export default function FileSystemNavigator() {
   const classes = useStyles();
+
   return (
     <TreeView
       className={classes.root}
@@ -95,7 +128,15 @@ export default function FileSystemNavigator() {
               {
                 root.children && map(root.children, children => {
                   return (
-                    <TreeItem classes={{ root: classes.treeItem, selected: classes.selected }} nodeId={children.id} label={children.name} key={children.name}/>
+                    <TreeItem
+                      classes={{ root: classes.treeItem, selected: classes.selected }}
+                      nodeId={children.id}
+                      label={children.name}
+                      key={children.name}
+                      onLabelClick={() => {
+                        Router.push(`/category/${children.id}`)
+                      }}
+                    />
                   )
                 })
               }

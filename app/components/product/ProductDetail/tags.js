@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: 'wrap',
     marginTop: 10,
     marginBottom: 10,
-    '& > a': {
+    '& a': {
       fontSize: 11,
       marginRight: 5,
       textDecoration: 'none',
@@ -25,14 +25,14 @@ const Tags = ({ tags }) => {
       {
         map(tags, tag => {
           return (
-            <>
-              <Link href={tag.url}>
+            <div key={tag.title.en}>
+              <a href={tag.url}>
                 {`#${tag.title.en}`}
-              </Link>
-              <Link href={tag.url}>
+              </a>
+              <a href={tag.url}>
                 {`#${tag.title.zh}`}
-              </Link>
-            </>
+              </a>
+            </div>
           )
         })
       }

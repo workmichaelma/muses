@@ -24,16 +24,16 @@ const useImageStyles = makeStyles((theme) => ({
   },
 }));
 
-const IndexMainSlider = ({ images }) => {
+const ProductMainSlider = ({ images }) => {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
       {
-        map(images, url => {
+        map(images, (url, key) => {
           const imageClasses = useImageStyles({ url })
           return (
-            <div className={imageClasses.image} />
+            <div className={imageClasses.image} key={`ProductMainSliderImage__${key}`} />
           )
         })
       }
@@ -41,4 +41,4 @@ const IndexMainSlider = ({ images }) => {
   )
 }
 
-export default IndexMainSlider
+export default ProductMainSlider
