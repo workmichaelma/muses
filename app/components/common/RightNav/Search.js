@@ -71,7 +71,6 @@ const Search = () => {
           renderInput={(params) => (
             <TextField
               {...params}
-              notched
               classes={{ ...textFieldClasses }}
               margin="normal"
               variant="outlined"
