@@ -91,11 +91,11 @@ export default function FileSystemNavigator() {
       {
         map(data, root => {
           return (
-            <TreeItem classes={{ root: classes.treeItem, selected: classes.selected }} nodeId={root.id} label={root.name}>
+            <TreeItem classes={{ root: classes.treeItem, selected: classes.selected }} nodeId={root.id} label={root.name} key={root.name}>
               {
                 root.children && map(root.children, children => {
                   return (
-                    <TreeItem classes={{ root: classes.treeItem, selected: classes.selected }} nodeId={children.id} label={children.name} />
+                    <TreeItem classes={{ root: classes.treeItem, selected: classes.selected }} nodeId={children.id} label={children.name} key={children.name}/>
                   )
                 })
               }

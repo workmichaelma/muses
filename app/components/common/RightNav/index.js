@@ -41,8 +41,8 @@ const RightNav = () => {
       <Search />
       <Grid container alignItems="center" justify="space-around" className={classes.payment}>
         {
-          map(navItems, item => {
-            return <NavBar url="/payment" title={item} />
+          map(navItems, (item, k) => {
+            return <NavBar url="/payment" title={item} key={k}/>
           })
         }
       </Grid>
