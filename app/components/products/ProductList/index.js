@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const CategoryProducts = ({ products }) => {
+const ProductList = ({ products }) => {
   const classes = useStyles();
 
   return (
@@ -19,7 +19,7 @@ const CategoryProducts = ({ products }) => {
       {
         map(products, (p, key) => {
           return (
-            <Grid item md={6} lg={4} key={key}>
+            <Grid item md={6} lg={4} key={`ProductList_${key}`}>
               <Product product={p} />
             </Grid>
           )
@@ -29,4 +29,4 @@ const CategoryProducts = ({ products }) => {
   )
 }
 
-export default CategoryProducts
+export default ProductList

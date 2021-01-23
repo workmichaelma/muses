@@ -74,7 +74,7 @@ MyApp.getInitialProps = async context => {
       ...componentProps,
       // Here will pass to page function
     },
-    // initialReduxState: store.getState(),
+    initialReduxState: store.getState(),
   }
 };
 

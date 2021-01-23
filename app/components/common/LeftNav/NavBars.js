@@ -7,8 +7,6 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import TreeItem from '@material-ui/lab/TreeItem';
 import map from 'lodash/map'
 
-import useCategory from 'hook/useCategory'
-
 const useStyles = makeStyles((theme) => ({
   root: {
     height: 240,
@@ -134,7 +132,7 @@ export default function FileSystemNavigator() {
                       label={children.name}
                       key={children.name}
                       onLabelClick={() => {
-                        Router.push(`/category/${children.id}`)
+                        Router.push(`/products/${children.id}`)
                       }}
                     />
                   )

@@ -29,7 +29,13 @@ const Product = ({ product }) => {
   const classes = useStyles();
   const { images, title, price, productId } = product
   
-  const [image, setImage] = useState(head(images))
+  const [image, setImage] = useState(null)
+
+  useEffect(() => {
+    setImage(head(images))
+  }, [images])
+
+  console.log({image, product, title, price, productId})
 
   return (
     <Link href={`/product/${productId}`}>

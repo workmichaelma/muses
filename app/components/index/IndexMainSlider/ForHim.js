@@ -29,7 +29,7 @@ const ForHim = ({ className }) => {
     <div className={`${classes.root} ${className}`}>
       <Container className={classes.container}>
         <div className={classes.a}>
-          <Link href="/category/men">
+          <Link href="/products/men">
             For him
           </Link>
         </div>
