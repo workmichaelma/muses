@@ -104,10 +104,12 @@ const data = [
   {
     id: 'forYou',
     name: '度身訂造',
+    url: '/personalization',
   },
   {
     id: 'seasonal',
     name: '季節限定',
+    url: '/seasonal'
   },
 ]
 
@@ -122,7 +124,15 @@ export default function FileSystemNavigator() {
       {
         map(data, root => {
           return (
-            <TreeItem classes={{ root: classes.treeItem, selected: classes.selected }} nodeId={root.id} label={root.name} key={root.name}>
+            <TreeItem
+              classes={{ root: classes.treeItem, selected: classes.selected }}
+              nodeId={root.id}
+              label={root.name}
+              key={root.name}
+              onLabelClick={() => {
+                Router.push(root.url)
+              }}
+            >
               {
                 root.children && map(root.children, children => {
                   return (
